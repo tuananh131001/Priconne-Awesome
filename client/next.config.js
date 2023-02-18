@@ -3,7 +3,7 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/char",
+        source: "/api/search",
         destination: "https://api.pcrdfans.com/x/v1/search",
       },
     ];

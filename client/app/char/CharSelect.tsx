@@ -23,7 +23,7 @@ function CharSelect() {
     }
     requestData.def = defName;
     const res = await axios.post(
-      "https://api.pcrdfans.com/x/v1/search",
+      "/api/search",
       requestData
     );
     console.log(res);
