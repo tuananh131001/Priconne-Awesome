@@ -1,23 +1,27 @@
 import React from "react";
-import * as cheerio from "cheerio";
+import { PrismaClient } from "@prisma/client";
+import Character from "./Character";
+
+const prisma = new PrismaClient();
 
 async function getData() {
-  const response = await fetch("https://www.pcrdfans.com/en/units");
-  const htmlString = await response.text();
-  const $ = cheerio.load(htmlString);
-  let res: any[] = [];
-  $(".collapse-css-transition>div").each((i, row) => {
-    //push div to res
-    console.log(row)
-
-  });
-  return res;
+  const unit = await prisma.unit_data.findMany();
+  return unit;
 }
 
 async function page() {
   const data = await getData();
   console.log(data);
-  return <h1>h1</h1>;
+  return (
+    <div>
+      <h1>Char Page</h1>
+      {data.map((unit) => (
+        <div key={unit.unit_id}>
+          <Character cid={unit.unit_id} name={unit.unit_name}></Character>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default page;

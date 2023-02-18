@@ -22,7 +22,6 @@ interface JsonProps {
   [key: number]: SubJsonProps;
 }
 
-
 export default function Character({
   cid = 105201,
   width = 50,
@@ -30,6 +29,7 @@ export default function Character({
   selected = false,
   noBorder = false,
   style = {},
+  name = "",
   borderRadius = 6,
   borderWidth = 1,
   grey = false,
@@ -39,34 +39,27 @@ export default function Character({
 
   let charaid = cid; // in case of cid overflow
   let mapValue: SubJsonProps = (charaMap as JsonProps)[cid];
-
+  if (!mapValue) {
+    mapValue = (charaMap as JsonProps)[100001];
+    charaid = 100001;
+  }
   const ratio = width / 60;
   const size = (show6x ? 184 : 927) * ratio; // width of charas.png
-  const backX = mapValue.x * ratio;
-  const backY = mapValue.y * ratio;
+  const backX = mapValue?.x * ratio;
+  const backY = mapValue?.y * ratio;
+  const newName = name.substring(0,name.indexOf("(")).trim(); // extracts the name "Yui" from the original string
+  const rest = name
+    .substring(name.indexOf("(") + 1, name.indexOf(")"))
+    .replace(/\s/g, "_"); // extracts the "New Year" part and replaces spaces with underscores
+  const newStr = rest + "_" + newName; // concatenates the two parts in the desired order
   return (
     <>
-      <div
-        style={{
-          width: `${width}px`,
-          height: `${width}px`,
-          backgroundImage: `url("https://www.pcrdfans.com/charas-20230216.png")`,
-          backgroundSize: `${size}px`,
-          borderRadius: `${borderRadius}px`,
-          backgroundPositionX: `-${backX}px`,
-          backgroundPositionY: `-${backY}px`,
-          opacity: selected ? 1 : 0.6,
-          cursor: noBorder ? "inherit" : "pointer",
-          border:
-            selected && !noBorder
-              ? `solid ${borderWidth}px #ffa500`
-              : `solid ${borderWidth}px transparent`,
-          display: "inline-block",
-          margin: "2px 2px",
-          filter: grey ? "grayscale(1)" : "unset",
-          ...style,
-        }}
-      ></div>
+      <Image
+        width={width}
+        height={width}
+        alt={name}
+        src={`https://expugn.github.io/priconne-quest-helper/images/unit_icon_webp/${newStr}.webp`}
+      ></Image>
     </>
   );
 }
