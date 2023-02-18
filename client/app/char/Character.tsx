@@ -34,9 +34,9 @@ export default function Character({
   borderWidth = 1,
   grey = false,
   show6x = false,
+  def,
+  setDef,
 }) {
-  console.log(data);
-
   let charaid = cid; // in case of cid overflow
   let mapValue: SubJsonProps = (charaMap as JsonProps)[cid];
   if (!mapValue) {
@@ -47,19 +47,28 @@ export default function Character({
   const size = (show6x ? 184 : 927) * ratio; // width of charas.png
   const backX = mapValue?.x * ratio;
   const backY = mapValue?.y * ratio;
-  const newName = name.substring(0,name.indexOf("(")).trim(); // extracts the name "Yui" from the original string
-  const rest = name
-    .substring(name.indexOf("(") + 1, name.indexOf(")"))
-    .replace(/\s/g, "_"); // extracts the "New Year" part and replaces spaces with underscores
-  const newStr = rest + "_" + newName; // concatenates the two parts in the desired order
+
+  const handleClick = () => {
+    if (!def.includes(name) && def.length < 5) {
+      setDef([...def, name]);
+    }
+    console.log(def);
+
+    // def.push(cid);
+  };
+
   return (
-    <>
+    <div
+      onClick={handleClick}
+      className="flex flex-col gap-2 flex-wrap w-12 hover:opacity-80 cursor-pointer"
+    >
       <Image
         width={width}
         height={width}
         alt={name}
-        src={`https://expugn.github.io/priconne-quest-helper/images/unit_icon_webp/${newStr}.webp`}
+        src={`/images/unit_icon_webp/${name}.webp`}
       ></Image>
-    </>
+      <h1 className="text-xs text-ellipsis w-12">{name}</h1>
+    </div>
   );
 }
