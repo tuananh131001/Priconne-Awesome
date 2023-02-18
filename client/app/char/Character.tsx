@@ -36,6 +36,8 @@ export default function Character({
   show6x = false,
   def,
   setDef,
+  setDefName,
+  defName,
 }) {
   let charaid = cid; // in case of cid overflow
   let mapValue: SubJsonProps = (charaMap as JsonProps)[cid];
@@ -49,12 +51,10 @@ export default function Character({
   const backY = mapValue?.y * ratio;
 
   const handleClick = () => {
-    if (!def.includes(name) && def.length < 5) {
-      setDef([...def, name]);
+    if (!defName.includes(name) && defName.length < 5) {
+      setDefName([...defName, name]);
+      setDef([...def, cid]);
     }
-    console.log(def);
-
-    // def.push(cid);
   };
 
   return (
@@ -68,7 +68,7 @@ export default function Character({
         alt={name}
         src={`/images/unit_icon_webp/${name}.webp`}
       ></Image>
-      <h1 className="text-xs text-ellipsis w-12">{name}</h1>
+      <h1 className="text-xs truncate w-12">{name}</h1>
     </div>
   );
 }
