@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { PrismaClient } from "@prisma/client";
 import data from "../../../data/character_data_en.json";
 import Character from "./Character";
 import axios from "axios";

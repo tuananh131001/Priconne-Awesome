@@ -38,7 +38,7 @@ export default function Character({
   setDef,
   setDefName,
   defName,
-}) {
+}:any) {
   let charaid = cid; // in case of cid overflow
   let mapValue: SubJsonProps = (charaMap as JsonProps)[cid];
   if (!mapValue) {
