@@ -21,7 +21,7 @@ function CharSelect() {
     if (def.length <= 4)  {
       return;
     }
-    requestData.def = defName;
+    requestData.def = def;
     const res = await axios.post(
       "/api/search",
       requestData
