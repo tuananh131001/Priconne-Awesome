@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import data from "../../../data/character_data_en.json";
 import Character from "./Character";
 import axios from "axios";
+import { generateNonce } from "@/utils/function";
+import moment from "moment";
 let requestData = {
   _sign: "切噜~卟卟叮咧啪叮叮噜哔卟铃卟啪嘭噜铃啪卟啪哔噜哔嘭啪叮啪咧咧嘭",
   def: [],
@@ -18,10 +20,14 @@ function CharSelect() {
   const [def, setDef] = useState([]);
   const [defName, setDefName] = useState([]);
   const handleSubmit = async () => {
-    if (def.length <= 4)  {
-      return;
-    }
+  
+    
+    const nonce = generateNonce();
+    const ts = parseInt(moment().format('X'), 10);
     requestData.def = def;
+    requestData.nonce = nonce;
+    requestData.ts = ts;
+    // body._sign = calcHash(body);
     const res = await axios.post(
       "/api/search",
       requestData
@@ -37,6 +43,7 @@ function CharSelect() {
             setDef={setDef}
             key={unit}
             name={unit}
+            cid={data[unit].unit_id}
             defName={defName}
             setDefName={setDefName}
           ></Character>

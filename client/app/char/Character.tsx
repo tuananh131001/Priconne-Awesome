@@ -40,21 +40,13 @@ export default function Character({
   defName,
 }:any) {
   let charaid = cid; // in case of cid overflow
-  let mapValue: SubJsonProps = (charaMap as JsonProps)[cid];
-  if (!mapValue) {
-    mapValue = (charaMap as JsonProps)[100001];
-    charaid = 100001;
-  }
-  const ratio = width / 60;
-  const size = (show6x ? 184 : 927) * ratio; // width of charas.png
-  const backX = mapValue?.x * ratio;
-  const backY = mapValue?.y * ratio;
 
   const handleClick = () => {
     if (!defName.includes(name) && defName.length < 5) {
       setDefName([...defName, name]);
       setDef([...def, cid]);
     }
+    console.log(def)
   };
 
   return (
