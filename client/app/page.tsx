@@ -1,6 +1,5 @@
 import * as cheerio from "cheerio";
 import Image from "next/image";
-import GoogleSheet from "./char/GoogleSheet";
 const spreadsheetId = "18VjvDwBrTinuWtqbxUxo0BNOvFpmztFO2p2D03tUxdA";
 import PublicGoogleSheetsParser from "public-google-sheets-parser";
 
