@@ -37,13 +37,13 @@ function CharSelect() {
   return (
     <div className="grid">
       <div className="grid grid-cols-6">
-        {Object.keys(data).map((unit) => (
+        {Object.keys(data).map((unit:string) => (
           <Character
             def={def}
             setDef={setDef}
             key={unit}
             name={unit}
-            cid={data[unit].unit_id}
+            cid={data[unit as keyof typeof data].unit_id}
             defName={defName}
             setDefName={setDefName}
           ></Character>
