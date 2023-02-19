@@ -146,7 +146,6 @@ export default async function Home() {
           ))}
         </tbody>
       </table>
-      <GoogleSheet data={data}></GoogleSheet>
     </main>
   );
 }
