@@ -32,7 +32,6 @@ function CharSelect() {
       "/api/search",
       requestData
     );
-    console.log(res);
   };
   return (
     <div className="grid">

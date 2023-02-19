@@ -47,7 +47,6 @@ async function getData() {
   newData = newData.filter((item: any) => item["Name "]);
   const superNew = data.map((unit: any) => {
     const item = newData.find((item:any) => item["Name "] == unit.charName);
-    console.log(item);
     if (item) {
       return item;
     } else{
