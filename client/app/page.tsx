@@ -1,14 +1,7 @@
 import * as cheerio from "cheerio";
-import Image from "next/image";
 const spreadsheetId = "18VjvDwBrTinuWtqbxUxo0BNOvFpmztFO2p2D03tUxdA";
 import PublicGoogleSheetsParser from "public-google-sheets-parser";
 import UnitList from "./UnitList";
-import {
-  BrowserView,
-  MobileView,
-  isBrowser,
-  isMobile,
-} from "react-device-detect";
 import UnitListDesktop from "./UnitListDesktop";
 
 const parser = new PublicGoogleSheetsParser(spreadsheetId, {
@@ -52,7 +45,6 @@ async function getData() {
   });
   let newData = await addChocolateState(data);
   // remove data without name
-  newData = newData.filter((item: any) => item["Name "]);
   const superNew = data.map((unit: any) => {
     const item = newData.find((item: any) => item["Name "] == unit.charName);
     if (item) {
@@ -105,7 +97,6 @@ function addChocolateState(data: any) {
 
   return newData;
 }
-
 export default async function Home() {
   const data = await getData();
 
