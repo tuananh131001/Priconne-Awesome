@@ -14,7 +14,7 @@ function UnitListDesktop({ data }: any) {
           <th className="px-6 py-3">CB Tier</th>
           <th className="px-6 py-3">Arena Tier</th>
           <th className="px-6 py-3">Total Rate</th>
-          <th className="px-6 py-3">Recommend Star/UE</th>
+          <th className="px-6 py-3">Star||UE</th>
 
           <th className="px-6 py-3">Gear</th>
         </tr>
@@ -51,7 +51,14 @@ function UnitListDesktop({ data }: any) {
               <RateColor rate={item.arenaTier}></RateColor>
             </td>
             <td className="px-6 py-4 text-orange-400">{item.totalRate}</td>
-            <td className="px-6 py-4">{item["Order"]}</td>
+            <td className="px-6 py-4">
+              {" "}
+              {item["Recommendations Stars Stars"]
+                ? item["Recommendations Stars Stars"]
+                : ""}
+              {" || "}
+              {item["Order"] ? item["Order"] : " "}
+            </td>
             <td className="px-6 py-4">{item["Gear Overall"]}</td>
           </tr>
         ))}
