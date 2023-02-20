@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import RateColor from "./RateColor";
 
-function UnitList({ data }) {
+function UnitList({ data }:any) {
   return (
     <div className="flex gap-2 flex-col p-2 lg:flex-row">
       {data.map((item: any) => (
