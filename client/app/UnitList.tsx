@@ -2,11 +2,14 @@ import Image from "next/image";
 import React from "react";
 import RateColor from "./RateColor";
 
-function UnitList({ data }:any) {
+function UnitList({ data }: any) {
   return (
     <div className="flex gap-2 flex-col p-2 lg:flex-row">
       {data.map((item: any) => (
-        <div key={item.name} className="outline-1 outline outline-blue-500 p-2 rounded-lg">
+        <div
+          key={item.name}
+          className="outline-1 outline outline-blue-500 p-2 rounded-lg"
+        >
           <section className="flex items-center gap-2">
             {" "}
             <Image
@@ -30,6 +33,21 @@ function UnitList({ data }:any) {
                 <RateColor rate={item.cbTier}></RateColor>
                 <h1 className="text-gray-100">Arena Tier: </h1>
                 <RateColor rate={item.arenaTier}></RateColor>
+              </section>
+              <section>
+                <h1 className="text-gray-100">STAR/UE: </h1>
+
+                <p className="text-yellow-100">
+                  {item["Recommendations Stars Stars"]
+                    ? item["Recommendations Stars Stars"]
+                    : ""}{" || "}
+                  {item["Order"] ? item["Order"] : " "}
+                </p>
+                <h1 className="text-gray-100">GEAR: </h1>
+                <p className="text-orange-300">
+                  {" "}
+                  {item["Gear Overall"] ? item["Gear Overall"] : " "}
+                </p>
               </section>
             </div>
             <h1 className="text-gray-100">Total Rate: {item.totalRate}</h1>
