@@ -3,44 +3,10 @@ import Image from "next/image";
 import React, { useState } from "react";
 import RateColor from "./RateColor";
 import { useRouter } from "next/navigation";
-import { SkeletonCard } from "./SketonCard";
-const sortUnitBy = (data: any, type: string, setLoading: any) => {
-  const rate: any = {
-    SSS: 6,
-    SS: 5,
-    S: 4,
-    A: 3,
-    B: 2,
-    C: 1,
-    D: 0,
-  };
-  if (type === "cbTier") {
-    data.sort((a: any, b: any) => {
-      return rate[b.cbTier] - rate[a.cbTier];
-    });
-  } else if (type === "questTier") {
-    data.sort((a: any, b: any) => {
-      return rate[b.questTier] - rate[a.questTier];
-    });
-  } else if (type === "lunaTier") {
-    data.sort((a: any, b: any) => {
-      return rate[b.lunaTier] - rate[a.lunaTier];
-    });
-  } else if (type === "arenaTier") {
-    data.sort((a: any, b: any) => {
-      return rate[b.arenaTier] - rate[a.arenaTier];
-    });
-  } else if (type === "totalRate") {
-    data.sort((a: any, b: any) => {
-      return rate[b.totalRate] - rate[a.totalRate];
-    });
-  }
-  return data;
-};
+import { sortUnitBy } from "@/utils/sortUnitType";
 
 function UnitListDesktop({ data }: any) {
   const [clientData, setClientData] = useState(data);
-  const [loading, setLoading] = useState(false);
   const router = useRouter();
   return (
     <>
@@ -52,7 +18,7 @@ function UnitListDesktop({ data }: any) {
             <th
               className="px-6 py-3 cursor-pointer hover:text-white"
               onClick={() => {
-                setClientData(sortUnitBy(clientData, "questTier", setLoading));
+                setClientData(sortUnitBy(clientData, "questTier"));
                 router.refresh();
               }}
             >
@@ -61,7 +27,7 @@ function UnitListDesktop({ data }: any) {
             <th
               className="px-6 py-3 cursor-pointer hover:text-white"
               onClick={() => {
-                setClientData(sortUnitBy(clientData, "lunaTier", setLoading));
+                setClientData(sortUnitBy(clientData, "lunaTier" ));
                 router.refresh();
               }}
             >
@@ -70,7 +36,7 @@ function UnitListDesktop({ data }: any) {
             <th
               className="px-6 py-3 cursor-pointer hover:text-white"
               onClick={() => {
-                setClientData(sortUnitBy(clientData, "cbTier", setLoading));
+                setClientData(sortUnitBy(clientData, "cbTier"));
 
                 router.refresh();
               }}
@@ -80,7 +46,7 @@ function UnitListDesktop({ data }: any) {
             <th
               className="px-6 py-3 cursor-pointer hover:text-white"
               onClick={() => {
-                setClientData(sortUnitBy(clientData, "arenaTier", setLoading));
+                setClientData(sortUnitBy(clientData, "arenaTier"));
                 router.refresh();
               }}
             >
@@ -89,7 +55,7 @@ function UnitListDesktop({ data }: any) {
             <th
               className="px-6 py-3 cursor-pointer hover:text-white"
               onClick={() => {
-                setClientData(sortUnitBy(clientData, "totalRate", setLoading));
+                setClientData(sortUnitBy(clientData, "totalRate"));
                 router.refresh();
               }}
             >
