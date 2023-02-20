@@ -101,7 +101,7 @@ export default async function Home() {
   const data = await getData();
 
   return (
-    <main className="bg-gray-900 h-full">
+    <main className="bg-gray-900 h-full bottom-0">
       <div className="font-sans container  antialiased max-w-4xl mb-40  lg:mx-auto">
         <h1 className="text-lg text-center text-white ">Priconne Tier List</h1>{" "}
         <div className="md:hidden">

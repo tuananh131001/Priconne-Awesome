@@ -3,7 +3,8 @@ import Image from "next/image";
 import React, { useState } from "react";
 import RateColor from "./RateColor";
 import { useRouter } from "next/navigation";
-const sortUnitBy = (data: any, type: string) => {
+import { SkeletonCard } from "./SketonCard";
+const sortUnitBy = (data: any, type: string, setLoading: any) => {
   const rate: any = {
     SSS: 6,
     SS: 5,
@@ -29,13 +30,17 @@ const sortUnitBy = (data: any, type: string) => {
     data.sort((a: any, b: any) => {
       return rate[b.arenaTier] - rate[a.arenaTier];
     });
+  } else if (type === "totalRate") {
+    data.sort((a: any, b: any) => {
+      return rate[b.totalRate] - rate[a.totalRate];
+    });
   }
-
   return data;
 };
 
 function UnitListDesktop({ data }: any) {
   const [clientData, setClientData] = useState(data);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   return (
     <>
@@ -45,42 +50,51 @@ function UnitListDesktop({ data }: any) {
             <th className="px-6 py-3">Character</th>
             <th className="px-6 py-3">Name</th>
             <th
-              className="px-6 py-3 cursor-pointer"
+              className="px-6 py-3 cursor-pointer hover:text-white"
               onClick={() => {
-                setClientData(sortUnitBy(clientData, "questTier"));
+                setClientData(sortUnitBy(clientData, "questTier", setLoading));
                 router.refresh();
               }}
             >
               Quest Tier
             </th>
             <th
-              className="px-6 py-3 cursor-pointer"
+              className="px-6 py-3 cursor-pointer hover:text-white"
               onClick={() => {
-                setClientData(sortUnitBy(clientData, "lunaTier"));
+                setClientData(sortUnitBy(clientData, "lunaTier", setLoading));
                 router.refresh();
               }}
             >
               Luna Tier
             </th>
             <th
-              className="px-6 py-3 cursor-pointer"
+              className="px-6 py-3 cursor-pointer hover:text-white"
               onClick={() => {
-                setClientData(sortUnitBy(clientData, "cbTier"));
+                setClientData(sortUnitBy(clientData, "cbTier", setLoading));
+
                 router.refresh();
               }}
             >
               CB Tier
             </th>
             <th
-              className="px-6 py-3 cursor-pointer"
+              className="px-6 py-3 cursor-pointer hover:text-white"
               onClick={() => {
-                setClientData(sortUnitBy(clientData, "arenaTier"));
+                setClientData(sortUnitBy(clientData, "arenaTier", setLoading));
                 router.refresh();
               }}
             >
               Arena Tier
             </th>
-            <th className="px-6 py-3">Total Rate</th>
+            <th
+              className="px-6 py-3 cursor-pointer hover:text-white"
+              onClick={() => {
+                setClientData(sortUnitBy(clientData, "totalRate", setLoading));
+                router.refresh();
+              }}
+            >
+              Total Rate
+            </th>
             <th className="px-6 py-3">Star||UE</th>
 
             <th className="px-6 py-3">Gear</th>
