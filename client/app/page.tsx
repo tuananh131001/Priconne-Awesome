@@ -2,6 +2,14 @@ import * as cheerio from "cheerio";
 import Image from "next/image";
 const spreadsheetId = "18VjvDwBrTinuWtqbxUxo0BNOvFpmztFO2p2D03tUxdA";
 import PublicGoogleSheetsParser from "public-google-sheets-parser";
+import UnitList from "./UnitList";
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile,
+} from "react-device-detect";
+import UnitListDesktop from "./UnitListDesktop";
 
 const parser = new PublicGoogleSheetsParser(spreadsheetId, {
   sheetId: "357887122",
@@ -46,10 +54,10 @@ async function getData() {
   // remove data without name
   newData = newData.filter((item: any) => item["Name "]);
   const superNew = data.map((unit: any) => {
-    const item = newData.find((item:any) => item["Name "] == unit.charName);
+    const item = newData.find((item: any) => item["Name "] == unit.charName);
     if (item) {
       return item;
-    } else{
+    } else {
       return unit;
     }
   });
@@ -68,10 +76,10 @@ interface UnitStat {
   "Gear Overall": string;
 }
 
-function addChocolateState(data:any) {
+function addChocolateState(data: any) {
   // 4. You can also pass the name of specific sheet to get.
   const newList: UnitStat[] = [];
-  let newData = parser.parse().then((items:any) => {
+  let newData = parser.parse().then((items: any) => {
     items.map((row: any) => {
       // check row has name  key
       if (row["Name "]) {
@@ -87,7 +95,7 @@ function addChocolateState(data:any) {
         } else if (row["Name "] == "Mio") {
           row["Name "] = "Mio(Deresute)";
         }
-        const item2 = data.find((item2:any) => item2.charName == row["Name "]);
+        const item2 = data.find((item2: any) => item2.charName == row["Name "]);
 
         newList.push({ ...item2, ...row });
       }
@@ -102,49 +110,17 @@ export default async function Home() {
   const data = await getData();
 
   return (
-    <main>
-      <h1 className="text-lg text-center   ">Priconne Tier List</h1>
-      <table className="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-            <th className="px-6 py-3">Character</th>
-            <th className="px-6 py-3">Name</th>
-            <th className="px-6 py-3">Quest Tier</th>
-            <th className="px-6 py-3">Luna Tier</th>
-            <th className="px-6 py-3">CB Tier</th>
-            <th className="px-6 py-3">Arena Tier</th>
-            <th className="px-6 py-3">Total Rate</th>
-            <th className="px-6 py-3">Recommend Star/UE</th>
-
-            <th className="px-6 py-3">Gear</th>
-          </tr>
-        </thead>
-        <tbody className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-          {data.map((item: any) => (
-            <tr
-              className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-              key={item?.charName}
-            >
-              <td className="px-6 py-4">
-                <Image
-                  src={item?.charIcon || ""}
-                  alt="Picture of the character"
-                  width={50}
-                  height={50}
-                ></Image>
-              </td>
-              <td className="px-6 py-4">{item?.charName}</td>
-              <td className="px-6 py-4">{item?.questTier}</td>
-              <td className="px-6 py-4">{item?.lunaTier}</td>
-              <td className="px-6 py-4">{item?.cbTier}</td>
-              <td className="px-6 py-4">{item?.arenaTier}</td>
-              <td className="px-6 py-4 text-orange-400">{item?.totalRate}</td>
-              <td className="px-6 py-4">{item["Order"]}</td>
-              <td className="px-6 py-4">{item["Gear Overall"]}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <main className="bg-gray-900 h-full">
+      <div className="font-sans container  antialiased max-w-4xl mb-40  lg:mx-auto">
+        <h1 className="text-lg text-center text-white ">Priconne Tier List</h1>{" "}
+        <div className="md:hidden">
+          <UnitList data={data}></UnitList>
+        </div>
+        <div className="hidden md:flex">
+          {" "}
+          <UnitListDesktop data={data}></UnitListDesktop>
+        </div>
+      </div>
     </main>
   );
 }
