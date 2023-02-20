@@ -10,8 +10,8 @@ function UnitListDesktop({ data }: any) {
   const router = useRouter();
   return (
     <>
-      <table className="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead className="text-xs sticky top-0 text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <table className="rounded-md table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead className="  text-xs sticky top-0 text-gray-500 uppercase bg-gray-800 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th className="px-6 py-3">Character</th>
             <th className="px-6 py-3">Name</th>
@@ -66,10 +66,10 @@ function UnitListDesktop({ data }: any) {
             <th className="px-6 py-3">Gear</th>
           </tr>
         </thead>
-        <tbody className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <tbody className="bg-gray-800 border-b dark:bg-gray-800 dark:border-gray-700">
           {clientData.map((item: any) => (
             <tr
-              className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+              className="bg-gray-800 border-b dark:bg-gray-800 dark:border-gray-700"
               key={item?.charName}
             >
               <td className="px-6 py-4">

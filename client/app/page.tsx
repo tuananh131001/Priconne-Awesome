@@ -107,7 +107,7 @@ export default async function Home() {
         <div className="md:hidden">
           <UnitList data={data}></UnitList>
         </div>
-        <div className="hidden md:flex">
+        <div className="hidden md:flex ">
           {" "}
           <UnitListDesktop data={data}></UnitListDesktop>
         </div>
