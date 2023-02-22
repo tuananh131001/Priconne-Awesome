@@ -27,7 +27,7 @@ function UnitListDesktop({ data }: any) {
             <th
               className="px-6 py-3 cursor-pointer hover:text-white"
               onClick={() => {
-                setClientData(sortUnitBy(clientData, "lunaTier" ));
+                setClientData(sortUnitBy(clientData, "lunaTier"));
                 router.refresh();
               }}
             >
@@ -61,6 +61,20 @@ function UnitListDesktop({ data }: any) {
             >
               Total Rate
             </th>
+            <th
+              className="px-6 py-3 cursor-pointer hover:text-white"
+              onClick={() => {
+                setClientData(sortUnitBy(clientData, "PVPATKTier"));
+                router.refresh();
+              }}
+            >
+              PVP ATK
+            </th>
+            <th className="px-6 py-3 cursor-pointer hover:text-white"  onClick={() => {
+                setClientData(sortUnitBy(clientData, "PVPDEFTier"));
+                router.refresh();
+              }}>PVP DEF</th>
+
             <th className="px-6 py-3">Star||UE</th>
 
             <th className="px-6 py-3">Gear</th>
@@ -98,6 +112,8 @@ function UnitListDesktop({ data }: any) {
                 <RateColor rate={item.arenaTier}></RateColor>
               </td>
               <td className="px-6 py-4 text-orange-400">{item.totalRate}</td>
+              <td className="px-6 py-4 text-blue-300">{item["PvP ATK"]}</td>
+              <td className="px-6 py-4 text-blue-600">{item["DEF"]}</td>
               <td className="px-6 py-4">
                 {" "}
                 {item["Recommendations Stars Stars"]
