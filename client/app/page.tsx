@@ -75,7 +75,6 @@ function addChocolateState(data: any) {
   // 4. You can also pass the name of specific sheet to get.
   const newList: UnitStat[] = [];
   let newData = parser.parse().then((items: any) => {
-    console.log(items)
     items.map((row: any) => {
       // check row has name  key
       if (row["Name "]) {
