@@ -50,7 +50,7 @@ function UnitListDesktop({ data }: any) {
                 router.refresh();
               }}
             >
-              Arena Tier
+              Arena Tiers
             </th>
             <th
               className="px-6 py-3 cursor-pointer hover:text-white"
