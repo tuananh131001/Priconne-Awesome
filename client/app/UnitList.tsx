@@ -82,7 +82,6 @@ function UnitList({ data }: any) {
           <Dropdown.Item>
             {" "}
             <a
-     
             >
               {" "}
               PVPDEFTier{" "}
