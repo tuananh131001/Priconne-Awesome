@@ -70,6 +70,23 @@ function UnitList({ data }: any) {
               Total Rate{" "}
             </a>
           </Dropdown.Item>
+          <Dropdown.Item>
+            {" "}
+            <a
+      
+            >
+              {" "}
+              PVPATKTier{" "}
+            </a>
+          </Dropdown.Item>
+          <Dropdown.Item>
+            {" "}
+            <a
+            >
+              {" "}
+              PVPDEFTier{" "}
+            </a>
+          </Dropdown.Item>
         </Dropdown>
         {clientData.map((item: any) => (
           <div
@@ -99,6 +116,12 @@ function UnitList({ data }: any) {
                   <RateColor rate={item.cbTier}></RateColor>
                   <h1 className="text-gray-100">Arena Tier: </h1>
                   <RateColor rate={item.arenaTier}></RateColor>
+                </section>
+                <section>
+                  <h1 className="text-gray-100">PVP Atack Tier: </h1>
+                  <RateColor rate={item["PvP ATK"]}></RateColor>
+                  <h1 className="text-gray-100">PVP DEF Tier: </h1>
+                  <RateColor rate={item["DEF"]}></RateColor>
                 </section>
                 <section>
                   <h1 className="text-gray-100">STAR/UE: </h1>

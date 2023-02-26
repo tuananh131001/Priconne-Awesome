@@ -66,9 +66,12 @@ interface UnitStat {
   "Name ": string;
   Order: string;
   "Gear Overall": string;
+  "PvP ATK": string;
+  "DEF": string;
 }
 
 function addChocolateState(data: any) {
+  
   // 4. You can also pass the name of specific sheet to get.
   const newList: UnitStat[] = [];
   let newData = parser.parse().then((items: any) => {
@@ -107,7 +110,7 @@ export default async function Home() {
         <div className="md:hidden">
           <UnitList data={data}></UnitList>
         </div>
-        <div className="hidden md:flex">
+        <div className="hidden md:flex ">
           {" "}
           <UnitListDesktop data={data}></UnitListDesktop>
         </div>
