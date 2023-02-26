@@ -73,7 +73,10 @@ function UnitList({ data }: any) {
           <Dropdown.Item>
             {" "}
             <a
-      
+              onClick={() => {
+                setClientData(sortUnitBy(clientData, "PVPATKTier"));
+                router.refresh();
+              }}
             >
               {" "}
               PVPATKTier{" "}
@@ -81,11 +84,10 @@ function UnitList({ data }: any) {
           </Dropdown.Item>
           <Dropdown.Item>
             {" "}
-            <a
-            >
-              {" "}
-              PVPDEFTier{" "}
-            </a>
+            <a onClick={() => {
+                setClientData(sortUnitBy(clientData, "PVPDEFTier"));
+                router.refresh();
+              }}> PVPDEFTier </a>
           </Dropdown.Item>
         </Dropdown>
         {clientData.map((item: any) => (
