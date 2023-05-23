@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/tuananh131001/Priconne-Awesome#readme",
   "dependencies": {
-    "sqlite": "^4.2.0",
+    "sqlite": "^4.2.1",
     "sqlite3": "^5.1.6"
   }
 }
